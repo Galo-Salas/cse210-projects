@@ -6,14 +6,15 @@ public class SimpleGoal : Goal
 
     public SimpleGoal(string name, string description, string points) : base(name, description, points)
     {
-        // Inherent default: a newly instantiated goal is never complete.
         _isComplete = false;
     }
 
-    public override void RecordEvent()
+    public override int RecordEvent()
     {
         _isComplete = true;
-        Console.WriteLine($"Congratulations! You have earned {_points} points.");
+        int pointsEarned = int.Parse(_points);
+        Console.WriteLine($"Congratulations! You have earned {pointsEarned} points.");
+        return pointsEarned;
     }
 
     public override bool IsComplete()
@@ -23,7 +24,6 @@ public class SimpleGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        // Serialization format: GoalType:Name,Description,Points,IsComplete
         return $"SimpleGoal:{_shortName},{_description},{_points},{_isComplete}";
     }
 }
